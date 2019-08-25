@@ -29,34 +29,61 @@
             <h4>Question 1</h4>
             <p>Your mind is always buzzing with unexplored ideas and plans.</p>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="q1-opt1" value="1">
+                <input class="form-check-input" type="radio" name="question1" id="q1-opt1" value="1">
                 <label class="form-check-label" for="q1-opt1">1</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="q1-opt2" value="2">
+                <input class="form-check-input" type="radio" name="question1" id="q1-opt2" value="2">
                 <label class="form-check-label" for="q1-opt2">2</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="q1-opt3" value="3">
+                <input class="form-check-input" type="radio" name="question1" id="q1-opt3" value="3">
                 <label class="form-check-label" for="q1-opt3">3</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="q1-opt4" value="4">
+                <input class="form-check-input" type="radio" name="question1" id="q1-opt4" value="4">
                 <label class="form-check-label" for="q1-opt4">4</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="q1-opt5" value="5">
+                <input class="form-check-input" type="radio" name="question1" id="q1-opt5" value="5">
                 <label class="form-check-label" for="q1-opt5">5</label>
             </div>
-                        
+                    
+            <h4>Question 2</h4>
+            <p>Generally speaking, you rely more on your experience than your imagination.</p>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="question2" id="q2-opt1" value="1">
+                <label class="form-check-label" for="q1-opt1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="question2" id="q2-opt2" value="2">
+                <label class="form-check-label" for="q1-opt2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="question2" id="q2-opt3" value="3">
+                <label class="form-check-label" for="q1-opt3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="question2" id="q2-opt4" value="4">
+                <label class="form-check-label" for="q1-opt4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="question2" id="q2-opt5" value="5">
+                <label class="form-check-label" for="q1-opt5">5</label>
+            </div>
+
             <button type="submit" class="btn btn-primary" id="submit">Submit</button>
 
             <script type="text/javascript">
 
                 $("#submit").click(function(){
                     event.preventDefault();
-                    alert("submit clicked");
-                    //let survey
+                    let answers = [];
+                    for (let i = 1; i <= 10; i++) {
+                        answers.push($(`input[name=question${i}]:checked`).val());
+                    }
+                    alert(answers);
+                    //let surve
                 })
             
             </script>
