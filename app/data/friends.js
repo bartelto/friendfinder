@@ -16,3 +16,5 @@ friends = [
         ]
     }
 ];
+
+module.exports = friends;
