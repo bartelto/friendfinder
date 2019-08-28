@@ -1,6 +1,8 @@
 # MuppetMate
 
-*MuppetMate* [muppetmate.herokuapp.com](http://muppetmate.herokuapp.com) is a friend-finding app to help you find the Muppet (or Muppet fan) you are most compatible with!
+*MuppetMate* is a friend-finding app to help you find the Muppet (or Muppet fan) you are most compatible with!
+
+Try it! [muppetmate.herokuapp.com](http://muppetmate.herokuapp.com)
 
 ## Introduction
 
