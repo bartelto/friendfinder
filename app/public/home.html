@@ -6,21 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FriendFinder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Great+Vibes&display=swap" rel="stylesheet">    <style>
+        body {
+            background: url(https://media.wired.com/photos/5b4d2e141d150e0b5cad855e/master/w_660,c_limit/muppets_js_wig.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        h1 {
+            font-family: 'Fredericka the Great', cursive;
+            display: inline;
+        }
+
+        .script {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+        }
+
+        .jumbotron {
+            background-color: rgb(234, 237, 240, 0.7);  
+        }
+
+        footer {
+            text-shadow: 0 0 15px white 
+        }
+
+        @media screen and (max-width: 640px) {
+            body {
+                background-size: auto;
+                background-position-x: center;
+            }
+        }
+
+
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-4">FriendFinder</h1>
+            <h1 class="display-4">Muppet</h1><h1 class="script">Mate</h1>
             <hr class="my-4">
-            <p class="lead">Answer a few basic questions.</p>
-            <p class="lead">Then find the friend with the greatest compatibility!</p>
+            <p class="lead">Answer a few basic questions to find the Muppet (or Muppet fan) you are most compatible with!</p>
             <a class="btn btn-primary btn-lg" href="/survey" role="button">Take the Survey</a>
         </div>
-        <div>
+        <footer>
             <hr class="my-4">
             <a href="./api/friends">API Friends List</a> | 
             <a href="https://github.com/bartelto/friendfinder">GitHub Repo</a>
-        </div>
+        </footer>
     </div>  
 
 </body>

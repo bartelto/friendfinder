@@ -6,7 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FriendFinder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Great+Vibes&display=swap" rel="stylesheet">  
     <style>
+        h1 {
+            font-family: 'Fredericka the Great', cursive;
+            display: inline;
+        }
+
+        .script {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+        }
+
+        h3, h4 {
+            font-family: 'Fredericka the Great', cursive;
+        }
+
         #match-photo {
             width: 100%;
         }
@@ -30,43 +45,44 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="display-4">Survey Questions</h1>
+        <h1 class="display-4">Survey </h1><h1 class="script">Questions</h1>
         <hr class="my-4">
-        <h3 class="display-4">About You</h3>
-        <form>
+        <h3>About You</h3>
+        <form id="survey"> 
             <div class="form-group">
                 <label for="name">Name (Required)</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
             </div>
             <div class="form-group">
                 <label for="photo">Link to Your Photo (Required)</label>
-                <input type="url" class="form-control" id="photo" placeholder="Enter a URL">
+                <input type="url" class="form-control" id="photo" placeholder="Enter a URL" required>
             </div>
             <hr class="my-4">
+            <p>Select a value from 1 to 5 to indicate how much you agree with each statement. (1 = Strongly Disagree, 5 = Strongly Agree)</p>
             <div id="questions">
             </div>
 
             <button type="submit" class="btn btn-primary" id="submit">Submit</button>
         </form>
         
-        <div>
+        <footer>
             <hr class="my-4">
             <a href="./api/friends">API Friends List</a> | 
             <a href="https://github.com/bartelto/friendfinder">GitHub Repo</a>
-        </div>
+        </footer>
     </div>  
 
     <div class="modal fade" id="match-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title">Best Match</h5>
+                <h5 class="modal-title">Your MuppetMate is...</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
-                    <h4 id="match-name">Name</h4>
+                    <h3 id="match-name">Name</h3>
                     <img id="match-photo" alt="Your perfect match">
                 </div>
                 <div class="modal-footer">
@@ -75,6 +91,25 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="warning-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Hold on!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please complete all fields before submitting.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     
     <script type="text/javascript">
 
@@ -91,7 +126,8 @@
             }
             
             if (!$("#name").val() || !$("#photo").val() || numAnswers < answers.length) {
-                alert("Please complete all fields before submitting.");
+                console.log(numAnswers,answers.length);
+                $('#warning-modal').modal('show');
                 return;
             }
 
@@ -105,22 +141,25 @@
                 //console.log(response);
                 $("#match-name").text(response.name);
                 $("#match-photo").attr("src", response.photo);
+
+                // clear the survey form
+                $("#survey")[0].reset();
+
                 $('#match-modal').modal('show');
             });
-            //let s
         })
 
         let questions = [
-            "Your mind is always buzzing with unexplored ideas and plans.",
-            "Generally speaking, you rely more on your experience than your imagination.",
-            "You find it easy to stay relaxed and focused even when there is some pressure.",
-            "You rarely do something just out of sheer curiosity.",
-            "People can rarely upset you.",
-            "It is often difficult for you to relate to other people’s feelings.",
-            "In a discussion, truth should be more important than people’s sensitivities.",
-            "You rarely get carried away by fantasies and ideas.",
-            "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
-            "You feel more energetic after spending time with a group of people."
+            "You would always have dessert first if it was up to you.",
+            "You have the heart of a child.",
+            "Other people almost always irritate you.",
+            "You have a fantastic imagination.",
+            "You have a close friendship with a bath toy.",
+            "For you, the glass is always half empty.",
+            "Music always makes you feel better.",
+            "Nothing breaks the tension of a moment like a good one-liner.",
+            "True love is what makes the world go ‘round.",
+            "You have big dreams and a humble heart."
         ];
 
         addQuestions();
@@ -132,7 +171,7 @@
                     .html(`<h4>Question ${i+1}</h4><p>${questions[i]}</p>`);
                 for (let j=0; j<5; j++) {
                     newQuestion.append(`<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="question${i+1}" id="q${i+1}-opt${j+1}" value="${j+1}">
+                        <input class="form-check-input" type="radio" name="question${i+1}" id="q${i+1}-opt${j+1}" value="${j+1} required">
                         <label class="form-check-label" for="q${i+1}-opt${j+1}">${j+1}</label>
                         </div>`);
                 }
